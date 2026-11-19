@@ -32,8 +32,58 @@
  */
 class Program
 {
+    // Méthode 1 : calcule les dégâts
+    static int CalculateWeaponDamage(int weaponPower)
+    {
+        return weaponPower; // besoin de rien de plus ici car il n'y a pas d'effets
+    }
+
+    // Méthode 2 : retire les PV du boss
+    static int CalculateRemainingHealth(int bossHealth, int damage)
+    {
+        int remainingHealth = bossHealth - damage;
+
+        if (remainingHealth < 0) // On s'assure de ne pas afficher un PV négatif
+        {
+            remainingHealth = 0; // Le nombre minimum de PV sera 0
+        }
+
+        return remainingHealth;
+    }
+
+    // Méthode 3 : affiche l'état du boss
+    static void DisplayBossStatus(int bossHealth)
+    {
+        Console.WriteLine("PV du boss : " + bossHealth);
+
+        if (bossHealth > 0)
+        {
+            Console.WriteLine("Le boss est toujours vivant !");
+        }
+        else
+        {
+            Console.WriteLine("Félicitations ! Le boss est vaincu !");
+        }
+    }
+    
     static void Main(string[] args)
     {
-        
+        // Variables locales (différentes des paramètres de méthodes)
+        int bossHealth = 150;
+        int weaponPower = 40;
+
+        // Première attaque
+        int damage = CalculateWeaponDamage(weaponPower);
+        bossHealth = CalculateRemainingHealth(bossHealth, damage);
+
+        DisplayBossStatus(bossHealth);
+
+        Console.WriteLine("----------------");
+
+        // Deuxième attaque
+        damage = CalculateWeaponDamage(weaponPower);
+        bossHealth = CalculateRemainingHealth(bossHealth, damage);
+
+        DisplayBossStatus(bossHealth);
     }
 }
