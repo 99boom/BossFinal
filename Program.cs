@@ -54,9 +54,15 @@ class Program
 
     static int CalculateRelainingHealth(int healthBoss, int damage)
     {
-        return healthBoss - damage;
-    }
+        healthBoss = healthBoss - damage;
 
+        if (healthBoss < 0)
+        {
+            healthBoss = 0;
+        }
+
+        return healthBoss;
+    }
     static void DisplayBossStatus(int healthBoss)
     {
         Console.WriteLine(healthBoss);
